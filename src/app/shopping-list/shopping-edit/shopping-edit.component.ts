@@ -1,6 +1,7 @@
 import {
   Component,
-  OnInit,
+  OnInit,
+
   OnDestroy,
   ViewChild
 } from '@angular/core';
@@ -18,7 +19,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) slForm: NgForm;
-  subscription = Subscription;
+  subscription = new Subscription;
   editMode = false;
   editedItemIndex: number;
   editedItem: Ingredient;
@@ -26,7 +27,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(private slService: ShoppingListService) { }
 
   ngOnInit() {
-    this.subscription = this.slService.startedEditing
+   this.subscription = this.slService.startedEditing
       .subscribe(
         (index: number) => {
           this.editedItemIndex = index;
