@@ -9,26 +9,33 @@ import { Subject } from "rxjs";
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Tasty Schnitzel',
-      'A Super Tasty Schnitzel',
-      'https://thecozyapron.com/wp-content/uploads/2012/02/schnitzel_thecozyapron_1.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries',20)
-      ]),
-    new Recipe(
-      'burger',
-      'things to say',
-      'https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg',
-      [
-        new Ingredient('Buns', 2),
-        new Ingredient('Meat', 1)
-      ])
-  ];
+  //private recipes: Recipe[] = [
+  //  new Recipe(
+  //    'Tasty Schnitzel',
+  //    'A Super Tasty Schnitzel',
+  //    'https://thecozyapron.com/wp-content/uploads/2012/02/schnitzel_thecozyapron_1.jpg',
+  //    [
+  //      new Ingredient('Meat', 1),
+  //      new Ingredient('French Fries',20)
+  //    ]),
+  //  new Recipe(
+  //    'burger',
+  //    'things to say',
+  //    'https://natashaskitchen.com/wp-content/uploads/2019/04/Best-Burger-5-600x900.jpg',
+  //    [
+  //      new Ingredient('Buns', 2),
+  //      new Ingredient('Meat', 1)
+  //    ])
+  //];
 
-  constructor(private slService: ShoppingListService) {}
+  private recipes: Recipe[] = [];
+
+  constructor(private slService: ShoppingListService) { }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 
   getRecipes() {
     return this.recipes.slice();
