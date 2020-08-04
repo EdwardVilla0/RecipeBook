@@ -12,7 +12,11 @@ import { RecipeService } from '../recipe.service';
 export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
-  recipeForm:  FormGroup;
+  recipeForm: FormGroup;
+
+  get ingredientsControls() {
+    return (this.recipeForm.get('ingredients') as FormArray).controls;
+  }
 
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
