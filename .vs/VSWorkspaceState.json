@@ -3,12 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\header",
+    "\\src\\app\\auth",
     "\\src\\app\\recipes",
-    "\\src\\app\\recipes\\recipe-edit",
-    "\\src\\app\\recipes\\recipe-list",
-    "\\src\\app\\recipes\\recipe-list\\recipe-item"
+    "\\src\\app\\shared\\alert",
+    "\\src\\app\\shopping-list",
+    "\\src\\app\\shopping-list\\shopping-edit",
+    "\\src\\app\\shopping-list\\store",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\recipes\\recipe-list\\recipe-list.component.ts",
+  "SelectedNode": "\\src\\app\\shopping-list\\shopping-edit\\shopping-edit.component.ts",
   "PreviewInSolutionExplorer": false
 }
