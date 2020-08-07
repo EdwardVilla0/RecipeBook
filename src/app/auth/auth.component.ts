@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService, AuthResponseData } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from './store/auth.actions';
+import { AlertComponent } from '../shared/alert/alert.component';
+import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 
 @Component({
   selector: 'app-auth',
@@ -13,10 +18,23 @@ export class AuthComponent implements OnInit {
   isLoginMode = true;
   isLoading = false;
   error: string = null;
+  private closeSub: Subscription;
+  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private store: Store<fromApp.AppState>) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.store.select('auth').subscribe(authState => {
+      this.isLoading = authState.loading;
+      this.error = authState.authError;
+      if (this.error) {
+        this.showErrorAlert(this.error)
+      }
+    });
   }
 
   onSwitchMode() {
@@ -34,28 +52,47 @@ export class AuthComponent implements OnInit {
 
     this.isLoading = true;
     if (this.isLoginMode) {
-      authObs = this.authService.login(email, password);
+      //authObs = this.authService.login(email, password);
+      this.store.dispatch(new AuthActions.LoginStart({ email: email, password: password })
+      );
     } else {
       authObs = this.authService.signUp(email, password);
     }
-
-    authObs.subscribe(resData => {
-      console.log(resData);
-      this.isLoading = false;
-      this.router.navigate(['']);
-    },
-      errorMessage => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
-      }
-    );
+    
+    //authObs.subscribe(resData => {
+    //  console.log(resData);
+    //  this.isLoading = false;
+    //  this.router.navigate(['']);
+    //},
+    //  errorMessage => {
+    //    console.log(errorMessage);
+    //    this.error = errorMessage;
+    //    this.isLoading = false;
+    //  }
+    //);
 
     form.reset();
   }
 
   onHandleError() {
     this.error = null;
+  }
+
+  private showErrorAlert(message: string) {
+    // const alertCmp = new AlertComponent();
+    const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(
+      AlertComponent
+    );
+    //const hostViewContainerRef = this.alertHost.viewContainerRef;
+    //hostViewContainerRef.clear();
+
+    //const componentRef = hostViewContainerRef.createComponent(alertCmpFactory);
+
+    //componentRef.instance.message = message;
+    //this.closeSub = componentRef.instance.close.subscribe(() => {
+     // this.closeSub.unsubscribe();
+     // hostViewContainerRef.clear();
+   // });
   }
 
 }
