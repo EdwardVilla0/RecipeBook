@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\auth",
+    "\\src\\app\\auth\\store",
+    "\\src\\app\\header",
     "\\src\\app\\recipes",
-    "\\src\\app\\shared\\alert",
-    "\\src\\app\\shopping-list",
-    "\\src\\app\\shopping-list\\shopping-edit",
-    "\\src\\app\\shopping-list\\store",
-    "\\src\\environments"
+    "\\src\\app\\recipes\\store",
+    "\\src\\app\\shared",
+    "\\src\\app\\store"
   ],
-  "SelectedNode": "\\src\\app\\shopping-list\\shopping-edit\\shopping-edit.component.ts",
+  "SelectedNode": "\\src\\app\\auth\\auth.service.ts",
   "PreviewInSolutionExplorer": false
 }
