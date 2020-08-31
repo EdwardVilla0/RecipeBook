@@ -1,7 +1,8 @@
-.form{
-    background-color: white;
-    opacity: .9;
-    padding: 20px;
+.form {
+  background-color: white;
+  opacity: .95;
+  padding: 20px;
+  border-radius: 5px;
 }
 .formButtons{
     text-align: center;
