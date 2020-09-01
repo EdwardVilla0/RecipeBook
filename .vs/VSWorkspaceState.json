@@ -3,14 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\auth",
-    "\\src\\app\\auth\\store",
-    "\\src\\app\\header",
     "\\src\\app\\recipes",
+    "\\src\\app\\recipes\\recipe-detail",
+    "\\src\\app\\recipes\\recipe-edit",
     "\\src\\app\\recipes\\store",
     "\\src\\app\\shared",
     "\\src\\app\\store"
   ],
-  "SelectedNode": "\\src\\app\\auth\\auth.service.ts",
+  "SelectedNode": "\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }
